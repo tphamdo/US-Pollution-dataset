@@ -13074,12 +13074,98 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>CMSC 320 Final Project &ndash; US Pollution</h1>
+<p>Contributors: Michael Wang, Trueman Phambdo, Jason Lee</p>
+<hr>
+<p><img src="../input/pollution.png" alt="pollution">
+<i>image by <a href="https://dribbble.com/Furmanczuk">Magda</a></i></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction:-">Introduction: <a class="anchor" id="intro" /><a class="anchor-link" href="#Introduction:-">&#182;</a></h2><hr>
+<h3>&ndash;  Air pollution basics &ndash;</h3>
+<p>Air pollution is simply when the quality of the air you breathe drops due to the presence of harmful, unwanted substances in the air, namely, <strong>pollutants</strong>.</p>
+<p>In this tutorial, we will mainly explore 4 of those 5 types of pollutants that are present in our database ($PM$ is not in the database):</p>
+<ul>
+<li>Sulphur dioxide ($SO_2$) : This contaminant is mainly emitted during the combustion of fossil fuels such as crude oil and coal.</li>
+<li>Carbon monoxide ($CO$) : This gas consists during incomplete combustion of fuels example :  A car engine running in a closed room.</li>
+<li>Nitrogen dioxide ($NO_2$) : These contaminants are emitted by traffic, combustion installations and the industries.</li>
+<li>Ozone ($O_3$) : Ozone is created through the influence of ultra violet sunlight (UV) on pollutants in the outside air.</li>
+<li>Particulate Matter ( $PM$ ) : Particulate matter is the sum of all solid and liquid particles suspended in air. This complex mixture includes both organic and inorganic particles, such as dust, pollen, soot, smoke, and liquid droplets. These particles vary greatly in size, composition, and origin.</li>
+</ul>
+<p>Predictions might have been more accurate if the dataset contained particle pollution (or particulate matter - $PM$) level too, which would cause similarly important health issues.</p>
+<h3>&ndash;  Necessary libraries &ndash;</h3>
+<ul>
+<li>pandas</li>
+<li>numpy</li>
+<li>matplotlib</li>
+</ul>
+<h3>&ndash;  About this dataset &ndash;</h3>
+<p>This dataset deals with pollution in the U.S. and is scraped from the <a href="https://aqsdr1.epa.gov/aqsweb/aqstmp/airdata/download_files.html">U.S. EPA database</a>. It contains data on four major pollutants (Nitrogen Dioxide, Sulphur Dioxide, Carbon Monoxide and Ozone) for every day from 2000 - 2016.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Table-of-Content-:">Table of Content :<a class="anchor-link" href="#Table-of-Content-:">&#182;</a></h2><hr>
+<ul>
+<li><p><a href="#intro">Introduction</a></p>
+</li>
+<li><p><a href="#data">1. Data preparation</a></p>
+</li>
+<li><p><a href="#eda">2. Exploratory data analysis</a></p>
+</li>
+<li><p><a href="#analysis">3. Analysis</a></p>
+</li>
+<li><p><a href="#insights">4. Insights</a></p>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="1.-Data-preparation">1. Data preparation<a class="anchor" id="data" /><a class="anchor-link" href="#1.-Data-preparation">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## import libraries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## read csv</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../input/pollution_us_2000_2016.csv&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;** successfully imported csv as dataframe **&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13096,7 +13182,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Hello World!
+<pre>** successfully imported csv as dataframe **
 </pre>
 </div>
 </div>
@@ -13104,6 +13190,489 @@ div#notebook {
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Peek-through-the-dataset">Peek through the dataset<a class="anchor-link" href="#Peek-through-the-dataset">&#182;</a></h3><p>The air quality level of each category ($NO_2$, etc.) is defined by the Air Quality Index (AQI). More detailed information on the Index can be found in the <a href="https://cfpub.epa.gov/airnow/index.cfm?action=aqibasics.aqi">EPA Air QUality Basic Page</a>.</p>
+<p>-- Remove unnecessary columns --</p>
+<ul>
+<li>Index column (Unnamed: 0) serves no purpose.</li>
+<li>State Code, Country Code, Site Num, Address are removed since State, Country and City columns are sufficent.</li>
+<li>All the units columns (NO2 Units, etc.) are removed since they only have 1 unique value representing their unit.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;Unnamed: 0&#39;</span><span class="p">,</span><span class="s1">&#39;State Code&#39;</span><span class="p">,</span><span class="s1">&#39;County Code&#39;</span><span class="p">,</span><span class="s1">&#39;Site Num&#39;</span><span class="p">,</span><span class="s1">&#39;Address&#39;</span><span class="p">,</span><span class="s1">&#39;NO2 Units&#39;</span><span class="p">,</span><span class="s1">&#39;O3 Units&#39;</span><span class="p">,</span><span class="s1">&#39;SO2 Units&#39;</span><span class="p">,</span><span class="s1">&#39;CO Units&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>County</th>
+      <th>City</th>
+      <th>Date Local</th>
+      <th>NO2 Mean</th>
+      <th>NO2 1st Max Value</th>
+      <th>NO2 1st Max Hour</th>
+      <th>NO2 AQI</th>
+      <th>O3 Mean</th>
+      <th>O3 1st Max Value</th>
+      <th>O3 1st Max Hour</th>
+      <th>O3 AQI</th>
+      <th>SO2 Mean</th>
+      <th>SO2 1st Max Value</th>
+      <th>SO2 1st Max Hour</th>
+      <th>SO2 AQI</th>
+      <th>CO Mean</th>
+      <th>CO 1st Max Value</th>
+      <th>CO 1st Max Hour</th>
+      <th>CO AQI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Arizona</td>
+      <td>Maricopa</td>
+      <td>Phoenix</td>
+      <td>2000-01-01</td>
+      <td>19.041667</td>
+      <td>49.0</td>
+      <td>19</td>
+      <td>46</td>
+      <td>0.022500</td>
+      <td>0.040</td>
+      <td>10</td>
+      <td>34</td>
+      <td>3.000000</td>
+      <td>9.0</td>
+      <td>21</td>
+      <td>13.0</td>
+      <td>1.145833</td>
+      <td>4.2</td>
+      <td>21</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Arizona</td>
+      <td>Maricopa</td>
+      <td>Phoenix</td>
+      <td>2000-01-01</td>
+      <td>19.041667</td>
+      <td>49.0</td>
+      <td>19</td>
+      <td>46</td>
+      <td>0.022500</td>
+      <td>0.040</td>
+      <td>10</td>
+      <td>34</td>
+      <td>3.000000</td>
+      <td>9.0</td>
+      <td>21</td>
+      <td>13.0</td>
+      <td>0.878947</td>
+      <td>2.2</td>
+      <td>23</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>Maricopa</td>
+      <td>Phoenix</td>
+      <td>2000-01-01</td>
+      <td>19.041667</td>
+      <td>49.0</td>
+      <td>19</td>
+      <td>46</td>
+      <td>0.022500</td>
+      <td>0.040</td>
+      <td>10</td>
+      <td>34</td>
+      <td>2.975000</td>
+      <td>6.6</td>
+      <td>23</td>
+      <td>NaN</td>
+      <td>1.145833</td>
+      <td>4.2</td>
+      <td>21</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arizona</td>
+      <td>Maricopa</td>
+      <td>Phoenix</td>
+      <td>2000-01-01</td>
+      <td>19.041667</td>
+      <td>49.0</td>
+      <td>19</td>
+      <td>46</td>
+      <td>0.022500</td>
+      <td>0.040</td>
+      <td>10</td>
+      <td>34</td>
+      <td>2.975000</td>
+      <td>6.6</td>
+      <td>23</td>
+      <td>NaN</td>
+      <td>0.878947</td>
+      <td>2.2</td>
+      <td>23</td>
+      <td>25.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Arizona</td>
+      <td>Maricopa</td>
+      <td>Phoenix</td>
+      <td>2000-01-02</td>
+      <td>22.958333</td>
+      <td>36.0</td>
+      <td>19</td>
+      <td>34</td>
+      <td>0.013375</td>
+      <td>0.032</td>
+      <td>10</td>
+      <td>27</td>
+      <td>1.958333</td>
+      <td>3.0</td>
+      <td>22</td>
+      <td>4.0</td>
+      <td>0.850000</td>
+      <td>1.6</td>
+      <td>23</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As seen above, some entries are <strong>duplications</strong> with the same observation date (Date Local column). Since there's no specific explanation for these duplications, we will calculate the mean values for each date and city.</p>
+<p>Also, delete entries with 'Country of Mexico' as its state since we are only dealing with pollutions in the U.S.</p>
+<p>Lastly, change Date Local from string to datetime</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># remove entries with NA</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;rows&#39;</span><span class="p">)</span>
+
+<span class="c1"># replace duplications with a single entry of mean values</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;State&#39;</span><span class="p">,</span><span class="s1">&#39;County&#39;</span><span class="p">,</span><span class="s1">&#39;City&#39;</span><span class="p">,</span><span class="s1">&#39;Date Local&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># remove Mexico</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">State</span><span class="o">!=</span><span class="s1">&#39;Country Of Mexico&#39;</span><span class="p">]</span>
+
+<span class="c1"># Change date from string to date value</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date Local&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Date Local&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>According to the <a href="https://www3.epa.gov/airnow/aqi_brochure_02_14.pdf">Air Quality Index guide</a> provided by EPA (page 3), the highest of AQI values for each category is reported as the overall AQI value.</p>
+<p>Create a new column to record the overall AQI.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;AQI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;NO2 AQI&#39;</span><span class="p">,</span> <span class="s1">&#39;O3 AQI&#39;</span><span class="p">,</span> <span class="s1">&#39;SO2 AQI&#39;</span><span class="p">,</span> <span class="s1">&#39;CO AQI&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>County</th>
+      <th>City</th>
+      <th>Date Local</th>
+      <th>NO2 Mean</th>
+      <th>NO2 1st Max Value</th>
+      <th>NO2 1st Max Hour</th>
+      <th>NO2 AQI</th>
+      <th>O3 Mean</th>
+      <th>O3 1st Max Value</th>
+      <th>...</th>
+      <th>O3 AQI</th>
+      <th>SO2 Mean</th>
+      <th>SO2 1st Max Value</th>
+      <th>SO2 1st Max Hour</th>
+      <th>SO2 AQI</th>
+      <th>CO Mean</th>
+      <th>CO 1st Max Value</th>
+      <th>CO 1st Max Hour</th>
+      <th>CO AQI</th>
+      <th>AQI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>Jefferson</td>
+      <td>Birmingham</td>
+      <td>2013-12-01</td>
+      <td>17.208333</td>
+      <td>39.3</td>
+      <td>18.0</td>
+      <td>37.0</td>
+      <td>0.013542</td>
+      <td>0.026</td>
+      <td>...</td>
+      <td>24.0</td>
+      <td>0.313636</td>
+      <td>1.0</td>
+      <td>11.0</td>
+      <td>1.0</td>
+      <td>0.266667</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>37.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alabama</td>
+      <td>Jefferson</td>
+      <td>Birmingham</td>
+      <td>2013-12-02</td>
+      <td>20.687500</td>
+      <td>32.4</td>
+      <td>7.0</td>
+      <td>30.0</td>
+      <td>0.009375</td>
+      <td>0.013</td>
+      <td>...</td>
+      <td>12.0</td>
+      <td>0.530000</td>
+      <td>2.4</td>
+      <td>11.0</td>
+      <td>3.0</td>
+      <td>0.400000</td>
+      <td>0.5</td>
+      <td>0.0</td>
+      <td>6.0</td>
+      <td>30.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Alabama</td>
+      <td>Jefferson</td>
+      <td>Birmingham</td>
+      <td>2013-12-03</td>
+      <td>14.912500</td>
+      <td>22.4</td>
+      <td>17.0</td>
+      <td>21.0</td>
+      <td>0.008167</td>
+      <td>0.012</td>
+      <td>...</td>
+      <td>11.0</td>
+      <td>0.305263</td>
+      <td>2.3</td>
+      <td>11.0</td>
+      <td>3.0</td>
+      <td>0.258333</td>
+      <td>0.3</td>
+      <td>0.0</td>
+      <td>3.0</td>
+      <td>21.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Alabama</td>
+      <td>Jefferson</td>
+      <td>Birmingham</td>
+      <td>2013-12-04</td>
+      <td>7.825000</td>
+      <td>19.3</td>
+      <td>17.0</td>
+      <td>18.0</td>
+      <td>0.011125</td>
+      <td>0.014</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.131818</td>
+      <td>1.3</td>
+      <td>17.0</td>
+      <td>1.0</td>
+      <td>0.116667</td>
+      <td>0.2</td>
+      <td>20.0</td>
+      <td>2.0</td>
+      <td>18.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alabama</td>
+      <td>Jefferson</td>
+      <td>Birmingham</td>
+      <td>2013-12-05</td>
+      <td>8.004762</td>
+      <td>16.0</td>
+      <td>7.0</td>
+      <td>15.0</td>
+      <td>0.010083</td>
+      <td>0.014</td>
+      <td>...</td>
+      <td>13.0</td>
+      <td>0.000000</td>
+      <td>1.1</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.108333</td>
+      <td>0.2</td>
+      <td>19.0</td>
+      <td>2.0</td>
+      <td>15.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a class="anchor" id="eda"></a></p>
+<h2 id="2.-Exploratory-data-analysis">2. Exploratory data analysis<a class="anchor-link" href="#2.-Exploratory-data-analysis">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="3.-Analysis">3. Analysis<a class="anchor" id="analysis" /><a class="anchor-link" href="#3.-Analysis">&#182;</a></h2><hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="4.-Insights">4. Insights<a class="anchor" id="insights" /><a class="anchor-link" href="#4.-Insights">&#182;</a></h2><hr>
+
+</div>
+</div>
 </div>
     </div>
   </div>
